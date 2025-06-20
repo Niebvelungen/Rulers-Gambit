@@ -1,0 +1,32 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccxyuyh00xp4i"]
+
+[ext_resource type="Script" uid="uid://d2s2q57n5i85b" path="res://scripts/Player.gd" id="1_p0vlq"]
+[ext_resource type="PackedScene" uid="uid://dfbirtvy55yl2" path="res://scenes/Zones/HandZone.tscn" id="2_v6fml"]
+[ext_resource type="PackedScene" uid="uid://oa6i65c2krj2" path="res://scenes/Zones/FieldZone.tscn" id="3_bruh7"]
+[ext_resource type="PackedScene" uid="uid://1rjpj20hdvmu" path="res://scenes/Zones/DeckZone.tscn" id="4_6eyey"]
+[ext_resource type="PackedScene" uid="uid://vf3mjy3o3imc" path="res://scenes/Zones/MagicStoneDeckZone.tscn" id="5_d3wef"]
+[ext_resource type="PackedScene" uid="uid://12jjbhsbg85m" path="res://scenes/Zones/GraveyardZone.tscn" id="6_o4126"]
+[ext_resource type="PackedScene" uid="uid://crbvcru2efeug" path="res://scenes/Zones/RemovedZone.tscn" id="7_lkdrv"]
+[ext_resource type="PackedScene" uid="uid://3gfwfhy2wpaf" path="res://scenes/Zones/SideboardZone.tscn" id="8_p7iby"]
+[ext_resource type="PackedScene" uid="uid://d2u5rpwn44qdy" path="res://scenes/Zones/RulerZone.tscn" id="9_0rnld"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_p0vlq")
+
+[node name="DeckRequest" type="HTTPRequest" parent="."]
+
+[node name="HandZone" parent="." instance=ExtResource("2_v6fml")]
+
+[node name="FieldZone" parent="." instance=ExtResource("3_bruh7")]
+
+[node name="DeckZone" parent="." instance=ExtResource("4_6eyey")]
+
+[node name="MagicStoneDeckZone" parent="." instance=ExtResource("5_d3wef")]
+
+[node name="GraveyardZone" parent="." instance=ExtResource("6_o4126")]
+
+[node name="RemovedZone" parent="." instance=ExtResource("7_lkdrv")]
+
+[node name="SideboardZone" parent="." instance=ExtResource("8_p7iby")]
+
+[node name="RulerZone" parent="." instance=ExtResource("9_0rnld")]

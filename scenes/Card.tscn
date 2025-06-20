@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://n1d6o2vyfgv7"]
+
+[ext_resource type="Script" uid="uid://cycnljom3sljl" path="res://scripts/Card/Card.gd" id="1_yiag5"]
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_yiag5")
+
+[node name="CardSprite" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CardName" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ImageRequest" type="HTTPRequest" parent="."]

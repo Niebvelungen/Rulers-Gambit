@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://3h8w71r5hfm0"]
+
+[ext_resource type="Script" uid="uid://4mysoynl7cu7" path="res://scripts/Board/2PlayerBoard.gd" id="1_gfe5j"]
+[ext_resource type="PackedScene" uid="uid://ccxyuyh00xp4i" path="res://scenes/Player.tscn" id="1_jibwq"]
+
+[node name="2PlayerBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gfe5j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player1" parent="VBoxContainer" instance=ExtResource("1_jibwq")]
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player0" parent="VBoxContainer" instance=ExtResource("1_jibwq")]
