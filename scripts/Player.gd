@@ -45,15 +45,15 @@ func _on_deck_response(result: int, response_code: int, headers: PackedStringArr
 				card.controller_id = player_id
 				
 				card.set_image_url(card_entry['img'])
-				var zoneToPut = card_entry['img']
-				if zoneToPut.Type == TYPE_STRING:
-					if(zoneToPut.contains('Main Deck')):
+				var zoneToPut = card_entry['zone']
+				if typeof(zoneToPut) == TYPE_STRING:
+					if (zoneToPut.contains('Main Deck')):
 						deck_zone.add_card(card)
-					elif(zoneToPut == 'Ruler'):
+					elif (zoneToPut == 'Ruler'):
 						ruler_zone.add_card(card)
-					elif(zoneToPut == 'Magic Stone Deck'):
+					elif (zoneToPut == 'Magic Stone Deck'):
 						magic_stone_deck_zone.add_card(card)
-					elif(zoneToPut == 'Sideboard Deck'):
+					elif (zoneToPut == 'Sideboard Deck'):
 						sideboard_zone.add_card(card)
 					else:
 						push_error("Zone not found to put card into: %s" % zoneToPut)
