@@ -16,23 +16,25 @@ script = ExtResource("1_p0vlq")
 [node name="DeckRequest" type="HTTPRequest" parent="."]
 
 [node name="HandZone" parent="." instance=ExtResource("2_v6fml")]
+position = Vector2(-305, 308)
 
 [node name="FieldZone" parent="." instance=ExtResource("3_bruh7")]
+position = Vector2(-63, 100)
 
 [node name="DeckZone" parent="." instance=ExtResource("4_6eyey")]
-position = Vector2(863, -292)
+position = Vector2(735, 40)
 
 [node name="MagicStoneDeckZone" parent="." instance=ExtResource("5_d3wef")]
-position = Vector2(211, 145)
+position = Vector2(-480, 176)
 
 [node name="GraveyardZone" parent="." instance=ExtResource("6_o4126")]
-position = Vector2(79, 61)
+position = Vector2(133, 70)
 
 [node name="RemovedZone" parent="." instance=ExtResource("7_lkdrv")]
-position = Vector2(67, 176)
+position = Vector2(87, 299)
 
 [node name="SideboardZone" parent="." instance=ExtResource("8_p7iby")]
-position = Vector2(61, 92)
+position = Vector2(95, 152)
 
 [node name="RulerZone" parent="." instance=ExtResource("9_0rnld")]
-position = Vector2(142, -325)
+position = Vector2(-480, 0)

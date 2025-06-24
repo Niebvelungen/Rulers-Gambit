@@ -10,8 +10,8 @@ player_two = NodePath("PlayerTwo")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PlayerOne" type="Node2D" parent="."]
-position = Vector2(0, 190)
+position = Vector2(0, -2)
 
 [node name="PlayerTwo" type="Node2D" parent="."]
-position = Vector2(0, -190)
+position = Vector2(-1, 0)
 rotation = 3.14159
