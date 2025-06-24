@@ -1,6 +1,8 @@
 extends Node
 
 @export var card_scene: PackedScene
+@export var player_one: Node2D
+@export var player_two: Node2D
 
 var player_scenes: Array[Node] = []
 var main_id = 1
@@ -20,9 +22,13 @@ func _init_players():
 		player.player_id = players_count
 		if players_count <= 1:
 			player.set_multiplayer_authority(main_id)
-		add_child(player)
-		player.load_deck("https://www.forceofwind.online/api/deck/66148/1a9be95b2c17463187071f44788c20a8")
-
+			player_one.add_child(player)
+		else:
+			player_two.add_child(player)
+		if players_count == 1:
+			player.load_deck("https://www.forceofwind.online/api/deck/66148/1a9be95b2c17463187071f44788c20a8")
+		else:
+			player.load_deck("https://www.forceofwind.online/api/deck/26631/")
 
 func _start_game():
 	for player in player_scenes:

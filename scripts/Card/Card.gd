@@ -6,7 +6,7 @@ enum Visibility {
 	SPECIFIC_PLAYERS
 }
 
-signal card_selected(card: Node)
+signal card_selected(card)
 
 @onready var front_side: TextureRect = $CardSprite
 @onready var card_back: TextureRect = $CardBack
@@ -61,14 +61,14 @@ func show_card_front():
 func update_visibility_for(local_player_id: int):
 	match visibility_mode:
 		Visibility.OWNER_ONLY:
-			if(local_player_id == owner_id):
+			if (local_player_id == owner_id):
 				show_card_front()
 			else:
 				show_card_back()
 		Visibility.ALL_PLAYERS:
 			show_card_front()
 		Visibility.SPECIFIC_PLAYERS:
-			if(visible_to_ids.has(local_player_id)):
+			if (visible_to_ids.has(local_player_id)):
 				show_card_front()
 			else:
 				show_card_back()
@@ -122,6 +122,6 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 	if err != OK:
 		push_error("Failed to load image from buffer")
 		return
-
+	image.resize(100, 140)
 	var texture := ImageTexture.create_from_image(image)
 	front_side.texture = texture
