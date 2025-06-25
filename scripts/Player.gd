@@ -42,6 +42,10 @@ func _on_deck_response(result: int, response_code: int, headers: PackedStringArr
 				var card_scene = preload("res://scenes/Card.tscn")
 				var card = card_scene.instantiate()
 				card.owner_id = player_id
+				if player_id == 1:
+					card.set_is_owner(true)
+				else:
+					card.set_is_owner(false)
 				card.controller_id = player_id
 				
 				card.set_image_url(card_entry['img'])

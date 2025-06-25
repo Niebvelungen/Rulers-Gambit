@@ -15,6 +15,8 @@ signal card_selected(card)
 var image_url: String = ""
 var owner_id: int
 var controller_id: int
+var is_owner: bool
+var front_side_clone: TextureRect
 
 var visibility_mode: Visibility = Visibility.OWNER_ONLY
 var visible_to_ids: Array[int] = []
@@ -38,6 +40,9 @@ func _ready() -> void:
 		
 func set_owner_id(id: int):
 	owner_id = id
+
+func set_is_owner(is_owner: bool):
+	self.is_owner = is_owner
 	
 func set_controller_id(id: int):
 	controller_id = id
@@ -57,6 +62,9 @@ func show_card_back():
 func show_card_front():
 	front_side.visible = true
 	card_back.visible = false
+
+func is_front_visible():
+	return front_side.visible
 
 func update_visibility_for(local_player_id: int):
 	match visibility_mode:
@@ -126,12 +134,25 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 	front_side.texture = texture
 
 func _on_mouse_entered():
-	print("Hovered!")
-	self.scale = Vector2(1.25, 1.25)
-	pass # Replace with function body.
+	if self.is_front_visible() and front_side and front_side is TextureRect:
+		# Duplicate front_side safely
+		var clone = front_side.duplicate() as TextureRect
+		if clone:
+			front_side_clone = clone
+			front_side_clone.name = "front_side_clone"
 
+			# Add clone to the scene tree
+			get_parent().add_child(front_side_clone)
+			front_side_clone.global_position = Vector2(0, -300)
+			front_side_clone.scale = Vector2(2, 2)
+
+			if not self.is_owner:
+				front_side_clone.rotation_degrees = 180
+
+			print("entered")
 
 func _on_mouse_exited():
-	print("Unhovered!")
-	self.scale = Vector2(0.25, 0.25)
-	pass # Replace with function body.
+	if front_side_clone and front_side_clone.is_inside_tree():
+		front_side_clone.queue_free()
+		front_side_clone = null
+		print("exited")
