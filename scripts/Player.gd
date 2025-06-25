@@ -53,7 +53,7 @@ func _on_deck_response(result: int, response_code: int, headers: PackedStringArr
 						ruler_zone.add_card(card)
 					elif (zoneToPut == 'Magic Stone Deck'):
 						magic_stone_deck_zone.add_card(card)
-					elif (zoneToPut == 'Sideboard Deck'):
+					elif (zoneToPut == 'Side Deck'):
 						sideboard_zone.add_card(card)
 					else:
 						push_error("Zone not found to put card into: %s" % zoneToPut)
