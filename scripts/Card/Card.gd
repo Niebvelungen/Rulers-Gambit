@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 enum Visibility {
 	OWNER_ONLY,
@@ -122,6 +122,16 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 	if err != OK:
 		push_error("Failed to load image from buffer")
 		return
-	image.resize(100, 140)
 	var texture := ImageTexture.create_from_image(image)
 	front_side.texture = texture
+
+func _on_mouse_entered():
+	print("Hovered!")
+	self.scale = Vector2(1.25, 1.25)
+	pass # Replace with function body.
+
+
+func _on_mouse_exited():
+	print("Unhovered!")
+	self.scale = Vector2(0.25, 0.25)
+	pass # Replace with function body.

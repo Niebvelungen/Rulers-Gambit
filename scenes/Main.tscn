@@ -8,6 +8,7 @@ player_one = NodePath("PlayerOne")
 player_two = NodePath("PlayerTwo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="PlayerOne" type="Node2D" parent="."]
 position = Vector2(0, -2)

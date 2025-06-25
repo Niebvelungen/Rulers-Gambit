@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dujknjpx4m2cn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jkuw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.966663, 0.947452, 0.716534, 0.352941)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="FieldPrefab" type="ColorRect"]
+offset_right = 480.0
+offset_bottom = 670.0
+scale = Vector2(0.25, 0.25)
+color = Color(1, 1, 1, 0)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 670.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jkuw")

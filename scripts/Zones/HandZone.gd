@@ -2,7 +2,7 @@ extends BaseZone
 
 class_name HandZone
 
-func add_card(card: Node2D) -> void:
+func add_card(card: Control) -> void:
 	cards.append(card)
 	add_child(card)
 
@@ -16,5 +16,5 @@ func arrange_cards() -> void:
 	for i in range(cards.size()):
 		cards[i].position = Vector2(i * spacing, 0)
 
-func _on_card_selected(card: Node2D) -> void:
+func _on_card_selected(card: Control) -> void:
 	print("Card selected:", card)
