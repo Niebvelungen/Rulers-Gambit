@@ -61,5 +61,13 @@ func _on_deck_response(result: int, response_code: int, headers: PackedStringArr
 						sideboard_zone.add_card(card)
 					else:
 						push_error("Zone not found to put card into: %s" % zoneToPut)
+
+		#draw
+		for i in range(5):
+			var card = deck_zone.get_top_card()
+			hand_zone.add_card(card)
+			pass
+
+		
 	else:
 		push_error("JSON Parse Error: %s" % error)

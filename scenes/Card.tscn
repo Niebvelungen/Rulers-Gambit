@@ -12,14 +12,17 @@ scale = Vector2(0.25, 0.25)
 script = ExtResource("1_yiag5")
 
 [node name="CardBack" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CardSprite" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CardName" type="Label" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 

@@ -1,18 +1,18 @@
-extends Node2D
 class_name BaseZone
 
-var cards: Array[Control] = []
+extends Node2D
 
-func add_card(card: Control):
+var cards: Array[Card] = []
+
+func add_card(card: Card):
 	if card and card not in cards:
 		cards.append(card)
 		add_child(card)
 
-func remove_card(card: Control):
+func remove_card(card: Card):
 	if card in cards:
 		cards.erase(card)
 		remove_child(card)
-		card.queue_free()
 
 func get_card_count() -> int:
 	return cards.size()
@@ -22,3 +22,10 @@ func clear_all_cards():
 		remove_child(card)
 		card.queue_free()
 	cards.clear()
+
+func get_top_card():
+	var card = cards.pop_front()
+	if(card == null):
+		return card
+	remove_card(card)
+	return card

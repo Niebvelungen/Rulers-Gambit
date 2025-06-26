@@ -1,3 +1,5 @@
+class_name Card
+
 extends Control
 
 enum Visibility {
@@ -9,7 +11,7 @@ enum Visibility {
 signal card_selected(card)
 
 @onready var front_side: TextureRect = $CardSprite
-@onready var card_back: TextureRect = $CardBack
+@onready var back_side: TextureRect = $CardBack
 @onready var http_request = $ImageRequest
 
 var image_url: String = ""
@@ -22,11 +24,11 @@ var visibility_mode: Visibility = Visibility.OWNER_ONLY
 var visible_to_ids: Array[int] = []
 
 func _ready() -> void:
-	var texture = load("res://assets/card/card_back.png") as Texture2D
+	var texture = load("res://assets/card/back_side.png") as Texture2D
 	if texture:
-		card_back.texture = texture
+		back_side.texture = texture
 
-	card_back.visible = false
+	back_side.visible = false
 	# Add HTTPRequest node at runtime
 	http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -57,14 +59,17 @@ func hide_from_others():
 	
 func show_card_back():
 	front_side.visible = false
-	card_back.visible = true
+	back_side.visible = true
 
 func show_card_front():
 	front_side.visible = true
-	card_back.visible = false
+	back_side.visible = false
 
 func is_front_visible():
 	return front_side.visible
+
+func is_back_visible():
+	return back_side.visible
 
 func update_visibility_for(local_player_id: int):
 	match visibility_mode:
@@ -120,6 +125,11 @@ func download_image(url: String) -> void:
 	if error != OK:
 		push_error("Failed to start image request: %s" % error)
 
+func re_download_image() -> void:
+	var error = http_request.request(image_url)
+	if error != OK:
+		push_error("Failed to start image request: %s" % error)
+
 func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS:
 		push_error("Image download failed")
@@ -132,6 +142,12 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 		return
 	var texture := ImageTexture.create_from_image(image)
 	front_side.texture = texture
+
+func scale_card(vector: Vector2):
+	if self.is_front_visible() and front_side and front_side is TextureRect:
+		front_side.scale = vector
+	elif self.is_back_visible() and back_side and back_side is TextureRect:
+		back_side.scale = vector
 
 func _on_mouse_entered():
 	if self.is_front_visible() and front_side and front_side is TextureRect:
