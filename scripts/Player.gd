@@ -3,6 +3,7 @@ class_name Player
 
 @export var player_id: int
 @export var is_local: bool
+@export var auto_draw_starting_hand: bool = false
 
 @onready var http = $DeckRequest
 @onready var hand_zone = $HandZone
@@ -13,6 +14,45 @@ class_name Player
 @onready var ruler_zone = $RulerZone
 @onready var deck_zone = $DeckZone
 @onready var magic_stone_deck_zone = $MagicStoneDeckZone
+@onready var ui_layer: CanvasLayer = $UI
+
+func _ready():
+	_setup_ui()
+
+func _setup_ui():
+	var root := Control.new()
+	root.name = "PlayerControls"
+	root.anchor_left = 0.0
+	root.anchor_top = 0.0
+	root.anchor_right = 0.0
+	root.anchor_bottom = 0.0
+	root.position = Vector2(20, 20)
+	ui_layer.add_child(root)
+
+	var hb := HBoxContainer.new()
+	hb.add_theme_constant_override("separation", 10)
+	root.add_child(hb)
+
+	var btn_draw1 := Button.new()
+	btn_draw1.text = "Draw 1"
+	btn_draw1.pressed.connect(func(): draw(1))
+	hb.add_child(btn_draw1)
+
+	var btn_draw5 := Button.new()
+	btn_draw5.text = "Draw 5"
+	btn_draw5.pressed.connect(func(): draw(5))
+	hb.add_child(btn_draw5)
+
+	var btn_draw7 := Button.new()
+	btn_draw7.text = "Draw 7"
+	btn_draw7.pressed.connect(func(): draw(7))
+	hb.add_child(btn_draw7)
+
+	var btn_shuffle := Button.new()
+	btn_shuffle.text = "Shuffle"
+	btn_shuffle.pressed.connect(func(): deck_zone.shuffle())
+	hb.add_child(btn_shuffle)
+
 
 func get_zone(zone_name: String) -> Node:
 	match zone_name.to_lower():
@@ -62,12 +102,19 @@ func _on_deck_response(result: int, response_code: int, headers: PackedStringArr
 					else:
 						push_error("Zone not found to put card into: %s" % zoneToPut)
 
-		#draw
-		for i in range(5):
-			var card = deck_zone.get_top_card()
-			hand_zone.add_card(card)
-			pass
+
 
 		
+		if auto_draw_starting_hand:
+			draw(5)
 	else:
 		push_error("JSON Parse Error: %s" % error)
+
+func draw(count: int = 1):
+	for i in range(count):
+		var card = deck_zone.get_top_card()
+		if card:
+			hand_zone.add_card(card)
+		else:
+			push_warning("Deck empty, cannot draw")
+
