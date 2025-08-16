@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://3gfwfhy2wpaf"]
+[gd_scene load_steps=3 format=3 uid="uid://3gfwfhy2wpaf"]
 
 [ext_resource type="Script" uid="uid://b32r861ewmol7" path="res://scripts/Zones/SideboardZone.gd" id="1_iymby"]
+[ext_resource type="Script" path="res://scripts/Zones/ZoneDropArea.gd" id="2_drop"]
 
 [node name="SideboardZone" type="Node2D"]
 script = ExtResource("1_iymby")
@@ -10,3 +11,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DropArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 670.0
+script = ExtResource("2_drop")
+mouse_filter = 2

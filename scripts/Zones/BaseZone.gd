@@ -16,7 +16,9 @@ func add_card(card: Card):
 func remove_card(card: Card):
 	if card in cards:
 		cards.erase(card)
-		remove_child(card)
+		var p := card.get_parent()
+		if p:
+			p.remove_child(card)
 
 func get_card_count() -> int:
 	return cards.size()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://12jjbhsbg85m"]
+[gd_scene load_steps=3 format=3 uid="uid://12jjbhsbg85m"]
 
 [ext_resource type="Script" uid="uid://cjorcx577um7c" path="res://scripts/Zones/GraveyardZone.gd" id="1_m2c4e"]
+[ext_resource type="Script" path="res://scripts/Zones/ZoneDropArea.gd" id="2_drop"]
 
 [node name="GraveyardZone" type="Node2D"]
 script = ExtResource("1_m2c4e")
@@ -10,3 +11,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DropArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 670.0
+script = ExtResource("2_drop")
+mouse_filter = 2

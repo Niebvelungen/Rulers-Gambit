@@ -112,8 +112,9 @@ func _update_all_players_visibility():
 
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		card_selected.emit(self)
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			card_selected.emit(self)
 
 func set_image_url(url: String) -> void:
 	image_url = url
@@ -170,5 +171,21 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if front_side_clone and front_side_clone.is_inside_tree():
 		front_side_clone.queue_free()
-		front_side_clone = null
-		print("exited")
+
+	front_side_clone = null
+	print("exited")
+
+func get_drag_data(at_position: Vector2):
+	var preview := TextureRect.new()
+	if is_front_visible():
+		preview.texture = front_side.texture
+	else:
+		preview.texture = back_side.texture
+	set_drag_preview(preview)
+	return {
+		"type": "card",
+		"card": self
+	}
+
+func can_drop_data(at_position: Vector2, data) -> bool:
+	return false

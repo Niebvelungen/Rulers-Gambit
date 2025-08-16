@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://vf3mjy3o3imc"]
+[gd_scene load_steps=3 format=3 uid="uid://vf3mjy3o3imc"]
 
 [ext_resource type="Script" uid="uid://vc04ulrfk1rq" path="res://scripts/Zones/MagicStoneDeckZone.gd" id="1_2k255"]
+[ext_resource type="Script" path="res://scripts/Zones/ZoneDropArea.gd" id="2_drop"]
 
 [node name="MagicStoneDeckZone" type="Node2D"]
 script = ExtResource("1_2k255")
@@ -10,3 +11,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DropArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 670.0
+script = ExtResource("2_drop")
+mouse_filter = 2
