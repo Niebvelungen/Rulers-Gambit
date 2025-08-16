@@ -151,6 +151,8 @@ func scale_card(vector: Vector2):
 		back_side.scale = vector
 
 func _on_mouse_entered():
+    if has_meta("suppress_hover_clone") and get_meta("suppress_hover_clone"):
+            return
 	if self.is_front_visible() and front_side and front_side is TextureRect:
 		# Duplicate front_side safely
 		var clone = front_side.duplicate() as TextureRect
